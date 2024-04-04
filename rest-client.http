@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
     "title": "first song with dto",
-    "artists": "dfgfg",
+    "artists": ["fgtt"],
     "releaseDate": "2024-04-03",
     "duration": "02:50"
 }
