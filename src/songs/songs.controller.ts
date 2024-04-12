@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Inject, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, HttpStatus, Inject, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { SongsService } from './songs.service';
 import { CreateSongDTO } from './dto/create-song-dto';
 
@@ -24,8 +24,11 @@ export class SongsController {
     }
 
     @Get(':id')
-    findOne() {
-        return 'fetch song by id endpoint'
+    findOne(
+        @Param('id', new ParseIntPipe({errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE}))
+        id:number
+    ) {
+        return `fetch song by id endpoint ${typeof id}`
     }
 
     @Put(':id')
