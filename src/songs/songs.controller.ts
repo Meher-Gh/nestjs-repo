@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Inject, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, HttpStatus, Inject, Post, Put } from '@nestjs/common';
 import { SongsService } from './songs.service';
 import { CreateSongDTO } from './dto/create-song-dto';
 
@@ -13,7 +13,14 @@ export class SongsController {
     
     @Get()
     findAll() {
-        return this.songService.findAll()
+        try {
+           return this.songService.findAll()
+        }
+        catch(e) {
+            throw new HttpException('server error', HttpStatus.INTERNAL_SERVER_ERROR, {
+                cause: e,
+            })
+        }
     }
 
     @Get(':id')

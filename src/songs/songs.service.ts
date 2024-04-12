@@ -11,6 +11,8 @@ export class SongsService {
     }
   
     findAll() {
+      throw new Error("db error for exp")
+
       return this.songs
     }
 }
